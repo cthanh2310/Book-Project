@@ -1,5 +1,7 @@
-require('dotenv').config();
+require('dotenv').config({ path : './configs/.env' });
 
+//dot env sai là do ông sai path ./config/.env
+// ong unistall lam gi vay - de tui giai thich trong readme
 console.log(process.env.PORT);
 
 const express = require('express');
