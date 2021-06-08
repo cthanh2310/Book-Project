@@ -13,4 +13,4 @@ b6: check neu k co conflict thi merge, neu co thi phai marge tay hoacj rebase
 b7: o may, check out ve lai main, sau do pull : git checkout main --> git pull
 b8: neu thay k can thiet giu lai cai branch luc nay thi xoa no di (vi code luc nay owr branch kia da nawm trong main r)
 
------------------------/-----------------------------
+-----------------------/----------------------------- as
