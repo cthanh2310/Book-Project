@@ -6,11 +6,13 @@ class authController {
     async login(req, res, next) {
         let user = await User.findOne({ email: req.body.email });
         if (!user) {
+            const err = new Error('Email is incorrect!');
+            err.statusCode = 400;
+            return next(err);
         }
         if (bcrypt.compareSync(req.body.password, user.password)) {
             console.log('2' + process.env.SECRET_KEY);
             const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
-            console.log(token);
             res.status(200).json({
                 status: 'success',
                 data: {
@@ -19,7 +21,9 @@ class authController {
                 }
             })
         } else {
-
+            const err = new Error('Password is incorrect!');
+            err.statusCode = 400;
+            return next(err);
         }
     }
     async register(req, res, next) {
@@ -32,7 +36,7 @@ class authController {
             })
 
         } catch (error) {
-            res.json(error);
+            next(error);
         }
 
     }
