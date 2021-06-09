@@ -3,7 +3,8 @@ const Post = require('../models/Post.js');
 class postController {
     async getAllPosts(req, res, next) {
         try {
-            const posts = Post.find({}).populate('author');
+            const posts = await Post.find({}).populate('author');
+            console.log('Console log ' + posts);
             res.status(200).json({
                 status: 'success',
                 results: posts.length, // > 0 ? posts,
@@ -29,9 +30,9 @@ class postController {
     }
     async updateOnePost(req, res, next) {
         try {
+            console.log(200)
             const { postId } = req.params;
-            const post = await Post.findByIdAndUpdate(postId, { ...req.body }, { new: true }, { runValidators: true });
-
+            const post = await Post.findByIdAndUpdate(postId, { ...req.body }, { new: true, runValidators: true});
             res.status(200).json({
                 status: 'success',
                 data: { post }
