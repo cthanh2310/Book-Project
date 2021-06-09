@@ -7,13 +7,14 @@ const route = require('./routes/index');
 const cors = require('cors');
 
 const db = require('./configs/db');
+const {errorHandler} = require('./middlewares/errorHandler');
+
 db.connect();
 
 app.use(cors());
-//dot env sai là do ông sai path ./config/.env
-app.use(express.json())
 
-console.log(process.env.PORT);
+// body-parser
+app.use(express.json())
 
 app.listen(port, () => {
     console.log('listening on port' + port);

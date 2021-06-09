@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
+        unique: true,
         required: [true, 'Username must be required']
     },
     email: {
@@ -30,7 +31,7 @@ userSchema.pre('save', async function (next) {
             return next(error); 
         } else {
             user.password = hashedPassword;
-            console.log(user.password);
+            // console.log(user.password);
             next();
         }
     })
