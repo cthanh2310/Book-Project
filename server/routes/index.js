@@ -1,5 +1,4 @@
 const authRouter = require('./auth.js');
-
 const postRouter = require('./post.js');
 
 function route(app){

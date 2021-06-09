@@ -1,4 +1,5 @@
 const express = require('express');
+const {authMiddleware}= require('../middlewares/authMiddleware')
 
 const postController = require('../controllers/postController.js');
 
@@ -6,10 +7,10 @@ const router = express.Router();
 
 router.get('/', postController.getAllPosts);
 
-router.post('/', postController.createOnePost);
+router.post('/',authMiddleware, postController.createOnePost);
 
-router.put('/:postId', postController.updateOnePost);
+router.put('/:postId',authMiddleware, postController.updateOnePost);
 
-router.delete('/:postId', postController.deleteOnePost);
+router.delete('/:postId',authMiddleware, postController.deleteOnePost);
 
 module.exports = router;
